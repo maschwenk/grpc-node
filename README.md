@@ -56,6 +56,11 @@ My steps:
 ```sh
 git clone git@github.com:grpc/grpc-node.git
 cd grpc-node
+brew install cmake # ./build_binaries.sh needs cmake. also tried xcode-select --install but it didn't seem to work
 cd packages/grpc-tools && git submodule update --init --recursive && ./build_binaries.sh
-brew install cmake # also tried xcode-select --install but it didn't seem to work
+
+# then to install in pnpm (does not support npm flag)
+npm_config_grpc_tools_binary_host_mirror="https://github.com/maschwenk/grpc-node/raw/2dd28e1ab8211533007dd2df5ae632de60006983/artifacts/" pnpm install
+# checkout https://github.com/mapbox/node-pre-gyp/blob/master/lib/util/versioning.js#L316
+# seems passing as an ENV also works (so will probably work for PNPM and Yarn)
 ```
