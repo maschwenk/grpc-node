@@ -46,3 +46,16 @@ Directory: [`packages/grpc-health-check`](https://github.com/grpc/grpc-node/tree
 npm package: [grpc-health-check](https://www.npmjs.com/package/grpc-health-check)
 
 Health check service for gRPC servers.
+
+### Building gprc-tools
+
+I needed to compile `gprc-tools` from source to be able to run it on Apple Silicon because builds are not provided.
+
+My steps:
+
+```sh
+git clone git@github.com:grpc/grpc-node.git
+cd grpc-node
+cd packages/grpc-tools && git submodule update --init --recursive && ./build_binaries.sh
+brew install cmake # also tried xcode-select --install but it didn't seem to work
+```
